@@ -1,22 +1,20 @@
-open_brace = ["[","{","("]
-close_brace = ["]","}",")"]
+def answer(s):
+    d = {")":"(","]":"[","}":"{"}
+    n = len(s)
+    stack = []
+    for i in range(n):
+        if (s[i] == '(' or s[i] == '{' or s[i] == '['):
+            stack.append(s[i])
+        elif (s[i] == ')' or s[i] == '}' or s[i] == ']'):
+            if (len(stack) == 0):
+                return False
+            if (stack[-1] != d[s[i]]):
+                return False
+            stack.pop()
+    if (len(stack) == 0):
+        return True
+    else:
+        return False
 
-# Function to check parentheses
-def check_braces(string):
-	stack = []
-	for i in string:
-		if i in open_brace:
-			stack.append(i)
-		elif i in close_brace:
-			pos = close_brace.index(i)
-			if ((len(stack) > 0) and (open_brace[pos] == stack[len(stack)-1])):
-				stack.pop()
-			else:
-				return "False"
-	if len(stack) == 0:
-		return "True"
-	else:
-		return "False"
-
-string = input()
-print(check_braces(string))
+s = input() 
+print (answer(s))
