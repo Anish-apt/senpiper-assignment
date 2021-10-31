@@ -1,5 +1,7 @@
 FROM centos:latest
 
+LABEL maintainer="Anish Khandelwal <anishkhandelwal.1999@gmail.com>"
+
 RUN yum install httpd -y
 
 COPY index.html /var/www/html
